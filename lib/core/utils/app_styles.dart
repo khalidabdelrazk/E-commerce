@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
@@ -36,7 +37,7 @@ class AppStyles {
   static TextStyle medium14PrimaryDark = GoogleFonts.poppins(
       fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.primaryDark);
   static TextStyle medium18Header = GoogleFonts.poppins(
-      // fontSize: 18.sp,
+      fontSize: 18.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.primaryDark);
   static TextStyle medium18White = GoogleFonts.poppins(
