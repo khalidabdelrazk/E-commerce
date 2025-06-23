@@ -1,10 +1,8 @@
 import 'package:ecommerce/core/di/di.dart';
 import 'package:ecommerce/core/utils/dialog_utils.dart';
-import 'package:ecommerce/presentation/authentication/Features/Cubit/Register/register_states.dart';
-import 'package:ecommerce/presentation/authentication/Features/Cubit/Register/register_view_model.dart';
+import 'package:ecommerce/presentation/authentication/Features/Cubit/auth_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import '../../../../core/utils/app_assets.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_routes.dart';
@@ -13,6 +11,7 @@ import '../../../../core/utils/validators.dart';
 import '../../../common/custom_button.dart';
 import '../../../common/custom_text_button.dart';
 import '../../../common/custom_text_field.dart';
+import '../Cubit/auth_view_model.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -22,7 +21,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  RegisterViewModel registerViewModel = getIt<RegisterViewModel>();
+  AuthViewModel registerViewModel = getIt<AuthViewModel>();
   bool hidePassword = true;
 
   @override
@@ -36,7 +35,6 @@ class _RegisterState extends State<Register> {
         if (state is ShowLoading) {
           return DialogUtils.showLoading(
             context: context,
-            message: 'Loading...',
           );
         } else if (state is ErrorState) {
           DialogUtils.hideLoading(context);

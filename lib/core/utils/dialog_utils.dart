@@ -4,24 +4,13 @@ import 'app_styles.dart';
 
 class DialogUtils {
   static void showLoading(
-      {required BuildContext context, required String message}) {
+      {required BuildContext context}) {
     showDialog(
         barrierDismissible: false,
         context: context,
         builder: (context) {
-          return AlertDialog(
-            content: Row(
-              children: [
-                const CircularProgressIndicator(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    message,
-                    style: AppStyles.light16White,
-                  ),
-                )
-              ],
-            ),
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         });
   }
@@ -50,7 +39,7 @@ class DialogUtils {
           },
           child: Text(
             posActionName,
-            style: AppStyles.light16White,
+            style: AppStyles.light16White.copyWith(color: Colors.black),
           )));
     }
     if (negActionName != null) {
@@ -59,7 +48,7 @@ class DialogUtils {
             Navigator.pop(context);
             negAction?.call();
           },
-          child: Text(negActionName, style: AppStyles.medium18Header)));
+          child: Text(negActionName, style: AppStyles.medium18Header.copyWith(color: Colors.black))));
     }
     showDialog(
         context: context,
@@ -67,11 +56,11 @@ class DialogUtils {
           return AlertDialog(
             content: Text(
               message,
-              style: AppStyles.light16White,
+              style: AppStyles.light16White.copyWith(color: Colors.black),
             ),
             title: Text(
               title ?? '',
-              style: AppStyles.light16White,
+              style: AppStyles.light16White.copyWith(color: Colors.black),
             ),
             actions: actions,
           );

@@ -1,6 +1,6 @@
-import 'package:ecommerce/presentation/authentication/Domain/Entity/register_response_entity.dart';
+import '../../Domain/Entity/login_response_entity.dart';
 
-class RegisterResponseDm extends RegisterResponseEntity {
+class RegisterResponseDm extends AuthResponseEntity {
   RegisterResponseDm({
     super.message,
     super.user,
@@ -17,7 +17,7 @@ class RegisterResponseDm extends RegisterResponseEntity {
 }
 
 class UserDm extends UserEntity {
-  UserDm({super.name, super.email, this.role});
+  UserDm({super.name, super.email, super.role});
 
   UserDm.fromJson(dynamic json) {
     name = json['name'];
@@ -25,7 +25,6 @@ class UserDm extends UserEntity {
     role = json['role'];
   }
 
-  String? role;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

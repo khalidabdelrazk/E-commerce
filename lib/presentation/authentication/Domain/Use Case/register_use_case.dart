@@ -1,13 +1,14 @@
-import 'package:ecommerce/presentation/authentication/Domain/Entity/register_response_entity.dart';
-import 'package:ecommerce/presentation/authentication/Domain/Repository/register_repository.dart';
+import 'package:ecommerce/presentation/authentication/Domain/Repository/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../../core/error/failures.dart';import 'package:either_dart/either.dart';
 
+import '../Entity/login_response_entity.dart';
+
 @Injectable()
 class RegisterUseCase {
-  final RegisterRepository registerRepository;
+  final AuthRepository registerRepository;
   RegisterUseCase({required this.registerRepository});
-  Future<Either<Failures, RegisterResponseEntity>> invoke(
+  Future<Either<Failures, AuthResponseEntity>> invoke(
     String? name,
     String? email,
     String? password,

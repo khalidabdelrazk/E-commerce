@@ -1,13 +1,14 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce/presentation/authentication/Features/auth/register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/di/di.dart';
 import 'core/utils/app_route_names.dart';
 import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'core/utils/my_bloc_observer.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
   runApp(const MyApp());
@@ -19,12 +20,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      routes: Routes.routes,
-      initialRoute: AppRoutes.loginRoute,
-      home: Register(),
+    return ScreenUtilInit(
+      designSize: const Size(430, 932),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        routes: Routes.routes,
+        initialRoute: AppRoutes.root,
+        // home: const Register(),
+      ),
     );
   }
 }
