@@ -22,25 +22,23 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   final HomeViewModel homeViewModel = getIt<HomeViewModel>();
-
   bool initialized = false;
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     if (!initialized) {
       homeViewModel.getCategories();
       homeViewModel.getBrands();
-      bool initialized = true;
+      initialized = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 16.h),
@@ -62,36 +60,33 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  _buildCategorySec() {
+  Widget _buildCategorySec() {
     return BlocBuilder<HomeViewModel, HomeStates>(
       bloc: homeViewModel,
-      buildWhen:
-          (previous, current) =>
-              current is CategorySuccessState || current is ErrorState,
+      buildWhen: (previous, current) =>
+      current is CategorySuccessState || current is ErrorState,
       builder: (context, state) {
         if (state is ErrorState) {
           return NetworkErrorWidget(errorMsg: state.errorMessage, large: false);
         } else if (state is CategorySuccessState) {
           return SizedBox(
-            height: 250.h,
-            width: double.infinity,
+            height: 290.h,
             child: GridView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: state.categoryOrBrandResponseEntity.data?.length ?? 0,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 mainAxisSpacing: 16.h,
                 crossAxisSpacing: 16.w,
+                childAspectRatio: 0.85,
               ),
-              itemCount: state.categoryOrBrandResponseEntity.data?.length,
-              scrollDirection: Axis.horizontal,
-              physics: const ScrollPhysics(),
               itemBuilder: (context, index) {
+                final item = state.categoryOrBrandResponseEntity.data![index];
                 return CategoryBrandItem(
-                  imgUrl:
-                      state.categoryOrBrandResponseEntity.data?[index].image ??
-                      '',
-                  title:
-                      state.categoryOrBrandResponseEntity.data?[index].name ??
-                      'hi',
+                  imgUrl: item.image ?? '',
+                  title: item.name ?? '',
                 );
               },
             ),
@@ -103,36 +98,33 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-  _buildBrandSec() {
+  Widget _buildBrandSec() {
     return BlocBuilder<HomeViewModel, HomeStates>(
       bloc: homeViewModel,
-      buildWhen:
-          (previous, current) =>
-              current is BrandsSuccessState || current is ErrorState,
+      buildWhen: (previous, current) =>
+      current is BrandsSuccessState || current is ErrorState,
       builder: (context, state) {
         if (state is ErrorState) {
           return NetworkErrorWidget(errorMsg: state.errorMessage, large: false);
         } else if (state is BrandsSuccessState) {
           return SizedBox(
-            height: 250.h,
-            width: double.infinity,
+            height: 290.h,
             child: GridView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: state.categoryOrBrandResponseEntity.data?.length ?? 0,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 mainAxisSpacing: 16.h,
                 crossAxisSpacing: 16.w,
+                childAspectRatio: 0.85,
               ),
-              itemCount: state.categoryOrBrandResponseEntity.data?.length,
-              scrollDirection: Axis.horizontal,
-              physics: const ScrollPhysics(),
               itemBuilder: (context, index) {
+                final item = state.categoryOrBrandResponseEntity.data![index];
                 return CategoryBrandItem(
-                  imgUrl:
-                      state.categoryOrBrandResponseEntity.data?[index].image ??
-                      '',
-                  title:
-                      state.categoryOrBrandResponseEntity.data?[index].name ??
-                      'hi',
+                  imgUrl: item.image ?? '',
+                  title: item.name ?? '',
                 );
               },
             ),
@@ -155,25 +147,25 @@ class _HomeTabState extends State<HomeTab> {
       isLoop: true,
       autoPlayInterval: 3000,
       height: 190.h,
-      children:
-          images.map((url) {
-            return Image.asset(url, fit: BoxFit.fill);
-          }).toList(),
+      children: images.map((url) => Image.asset(url, fit: BoxFit.cover)).toList(),
     );
   }
 
   Widget _lineBreak({required String name}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(name, style: AppStyles.medium18Header),
-        TextButton(
-          onPressed: () {
-            //todo: navigate to all
-          },
-          child: Text("View All", style: AppStyles.regular12Text),
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(name, style: AppStyles.medium18Header),
+          TextButton(
+            onPressed: () {
+              // TODO: Navigate to full list
+            },
+            child: Text("View All", style: AppStyles.regular12Text),
+          ),
+        ],
+      ),
     );
   }
 }
