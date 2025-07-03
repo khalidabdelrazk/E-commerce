@@ -14,11 +14,21 @@ class UserTab extends StatefulWidget {
 }
 
 class _UserTabState extends State<UserTab> {
-  TextEditingController fullNameController = TextEditingController(text: "Mohamed Mohamed Nabil");
-  TextEditingController emailController = TextEditingController(text: "mohamed.N@gmail.com");
-  TextEditingController passwordController = TextEditingController(text: "**********");
-  TextEditingController mobileController = TextEditingController(text: "01122118855");
-  TextEditingController addressController = TextEditingController(text: "6th October, street 11.....");
+  TextEditingController fullNameController = TextEditingController(
+    text: "Mohamed Mohamed Nabil",
+  );
+  TextEditingController emailController = TextEditingController(
+    text: "mohamed.N@gmail.com",
+  );
+  TextEditingController passwordController = TextEditingController(
+    text: "**********",
+  );
+  TextEditingController mobileController = TextEditingController(
+    text: "01122118855",
+  );
+  TextEditingController addressController = TextEditingController(
+    text: "6th October, street 11.....",
+  );
   bool fullNameReadOnly = true;
   bool emailReadOnly = true;
   bool passwordReadOnly = true;
@@ -33,51 +43,45 @@ class _UserTabState extends State<UserTab> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AutoSizeText(
-              "Welcome, Mohamed",
-              style: AppStyles.medium18Header,
-            ),
+            AutoSizeText("Welcome, Mohamed", style: AppStyles.medium18Header),
             AutoSizeText(
               "mohamed.N@gmail.com",
               style: AppStyles.medium14LightPrimary,
             ),
-            SizedBox(height: 40.h,),
-            AutoSizeText(
-              "Your full name",
-              style: AppStyles.medium18Header,
-            ),
+            SizedBox(height: 40.h),
+            AutoSizeText("Your full name", style: AppStyles.medium18Header),
             CustomTextFormField(
               isPassword: false,
               readonly: fullNameReadOnly,
               keyboardType: TextInputType.name,
               controller: fullNameController,
               borderColor: AppColors.primary30Opacity,
-              suffixIcon: IconButton(onPressed: () {
-                fullNameReadOnly = false;
-                setState(() {});
-              }, icon: const Icon(Icons.edit)),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  fullNameReadOnly = false;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.edit),
+              ),
               textStyle: AppStyles.medium14PrimaryDark,
             ),
-            AutoSizeText(
-              "Your E-mail",
-              style: AppStyles.medium18Header,
-            ),
+            AutoSizeText("Your E-mail", style: AppStyles.medium18Header),
             CustomTextFormField(
               readonly: emailReadOnly,
               isPassword: false,
               keyboardType: TextInputType.emailAddress,
               controller: emailController,
               borderColor: AppColors.primary30Opacity,
-              suffixIcon: IconButton(onPressed: () {
-                emailReadOnly = false;
-                setState(() {});
-              }, icon: const Icon(Icons.edit)),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  emailReadOnly = false;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.edit),
+              ),
               textStyle: AppStyles.medium14PrimaryDark,
             ),
-            AutoSizeText(
-              "Your password",
-              style: AppStyles.medium18Header,
-            ),
+            AutoSizeText("Your password", style: AppStyles.medium18Header),
             CustomTextFormField(
               isObscureText: true,
               readonly: passwordReadOnly,
@@ -85,42 +89,45 @@ class _UserTabState extends State<UserTab> {
               keyboardType: TextInputType.visiblePassword,
               controller: passwordController,
               borderColor: AppColors.primary30Opacity,
-              suffixIcon: IconButton(onPressed: () {
-                passwordReadOnly = false;
-                setState(() {});
-              }, icon: const Icon(Icons.edit)),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  passwordReadOnly = false;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.edit),
+              ),
               textStyle: AppStyles.medium14PrimaryDark,
             ),
-            AutoSizeText(
-              "Your mobile number",
-              style: AppStyles.medium18Header,
-            ),
+            AutoSizeText("Your mobile number", style: AppStyles.medium18Header),
             CustomTextFormField(
               isPassword: false,
               readonly: mobileReadOnly,
               keyboardType: TextInputType.phone,
               controller: mobileController,
               borderColor: AppColors.primary30Opacity,
-              suffixIcon: IconButton(onPressed: () {
-                mobileReadOnly = false;
-                setState(() {});
-              }, icon: const Icon(Icons.edit)),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  mobileReadOnly = false;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.edit),
+              ),
               textStyle: AppStyles.medium14PrimaryDark,
             ),
-            AutoSizeText(
-              "Your Address",
-              style: AppStyles.medium18Header,
-            ),
+            AutoSizeText("Your Address", style: AppStyles.medium18Header),
             CustomTextFormField(
               isPassword: false,
               readonly: addressReadOnly,
               keyboardType: TextInputType.streetAddress,
               controller: addressController,
               borderColor: AppColors.primary30Opacity,
-              suffixIcon: IconButton(onPressed: () {
-                addressReadOnly = false;
-                setState(() {});
-              }, icon: const Icon(Icons.edit)),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  addressReadOnly = false;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.edit),
+              ),
               textStyle: AppStyles.medium14PrimaryDark,
             ),
           ],

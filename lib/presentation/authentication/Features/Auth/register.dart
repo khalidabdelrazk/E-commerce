@@ -29,13 +29,10 @@ class _RegisterState extends State<Register> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return BlocListener(
-
       bloc: registerViewModel,
       listener: (context, state) {
         if (state is ShowLoading) {
-          return DialogUtils.showLoading(
-            context: context,
-          );
+          return DialogUtils.showLoading(context: context);
         } else if (state is ErrorState) {
           DialogUtils.hideLoading(context);
           return DialogUtils.showMessage(
@@ -44,7 +41,7 @@ class _RegisterState extends State<Register> {
             title: "Error",
             posActionName: 'Ok',
           );
-        } else if(state is SuccessState){
+        } else if (state is SuccessState) {
           DialogUtils.hideLoading(context);
           return DialogUtils.showMessage(
             context: context,

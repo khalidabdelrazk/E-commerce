@@ -7,11 +7,11 @@ import 'app_routes.dart';
 
 class Routes {
   static Map<String, Widget Function(BuildContext)> routes = {
-      AppRoutes.loginRoute: (context) => const Login(),
-      AppRoutes.registerRoute: (context) => const Register(),
-      AppRoutes.root: (context) => const Root(),
-      // AppRoutes.cartRoute: (context) => CartScreen(),
-      // AppRoutes.productRoute: (context) => ProductDetailsScreen(),
+    AppRoutes.loginRoute: (context) => const Login(),
+    AppRoutes.registerRoute: (context) => const Register(),
+    AppRoutes.root: (context) => const Root(),
 
+    // AppRoutes.cartRoute: (context) => CartScreen(),
+    // AppRoutes.productRoute: (context) => ProductDetailsScreen(),
   };
 }

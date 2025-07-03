@@ -7,7 +7,7 @@ import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'core/utils/my_bloc_observer.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
@@ -32,4 +32,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

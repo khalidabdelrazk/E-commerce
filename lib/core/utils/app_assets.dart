@@ -9,7 +9,7 @@ class AppAssets {
   static const String selectedAddToFavouriteIcon =
       "assets/icons/add_to_favourite.png";
 
-// Not selected icons
+  // Not selected icons
   static const String unSelectedHomeIcon =
       "assets/icons/home_icon_not_selected.png";
   static const String unSelectedCategoryIcon =

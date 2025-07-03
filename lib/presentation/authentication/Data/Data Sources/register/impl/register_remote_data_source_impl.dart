@@ -35,9 +35,7 @@ class RegisterRemoteDataSourceImpl implements RegisterRemoteDataSource {
             "rePassword": rePassword,
             "phone": phone,
           },
-          options: Options(
-            validateStatus: (status) => true,
-          )
+          options: Options(validateStatus: (status) => true),
         );
         RegisterResponseDm registerResponse = RegisterResponseDm.fromJson(
           response.data,

@@ -37,8 +37,10 @@ class _CartItemState extends State<CartItem> {
               _buildImageContainer(),
               Expanded(
                 child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.w,
+                    vertical: 12.h,
+                  ),
                   child: Column(
                     children: [
                       _buildItemHeader(),
@@ -71,15 +73,13 @@ class _CartItemState extends State<CartItem> {
           fit: BoxFit.cover,
           imageUrl:
               "https://www.nike.sa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw42ccc9ea/nk/a9b/7/6/4/b/1/a9b764b1_834c_413e_aec2_f460112b2de6.jpg?sw=2000&sh=2000&sm=fit",
-          placeholder: (context, url) => const Center(
-            child: CircularProgressIndicator(
-              color: AppColors.yellowColor,
-            ),
-          ),
-          errorWidget: (context, url, error) => const Icon(
-            Icons.error,
-            color: AppColors.redColor,
-          ),
+          placeholder:
+              (context, url) => const Center(
+                child: CircularProgressIndicator(color: AppColors.yellowColor),
+              ),
+          errorWidget:
+              (context, url, error) =>
+                  const Icon(Icons.error, color: AppColors.redColor),
         ),
       ),
     );
@@ -93,10 +93,10 @@ class _CartItemState extends State<CartItem> {
           "NIKE AIR JORDAN",
           maxLines: 1,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp,
-              ),
+            color: AppColors.primaryColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 18.sp,
+          ),
         ),
         InkWell(
           onTap: () {
@@ -115,19 +115,16 @@ class _CartItemState extends State<CartItem> {
   Widget _buildItemDetails() {
     return Row(
       children: [
-        CircleAvatar(
-          backgroundColor: AppColors.blackColor,
-          radius: 10.r,
-        ),
+        CircleAvatar(backgroundColor: AppColors.blackColor, radius: 10.r),
         SizedBox(width: 10.w),
         AutoSizeText(
           "black | size 40",
           maxLines: 1,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.primaryDarkLight,
-                fontWeight: FontWeight.w500,
-                fontSize: 14.sp,
-              ),
+            color: AppColors.primaryDarkLight,
+            fontWeight: FontWeight.w500,
+            fontSize: 14.sp,
+          ),
         ),
       ],
     );
@@ -141,10 +138,10 @@ class _CartItemState extends State<CartItem> {
           "Egp 3,500",
           maxLines: 1,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp,
-              ),
+            color: AppColors.primaryColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 18.sp,
+          ),
         ),
         _buildQuantityControl(),
       ],
@@ -179,10 +176,10 @@ class _CartItemState extends State<CartItem> {
             "$itemCount",
             maxLines: 1,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: AppColors.whiteColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
-                ),
+              color: AppColors.whiteColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
           ),
           IconButton(
             onPressed: () {

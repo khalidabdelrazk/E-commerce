@@ -9,7 +9,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/api manager/api_endpints.dart';
 
-
 @Injectable(as: GetCategoryDataSource)
 class GetCategoryDataSourceImpl extends GetCategoryDataSource {
   ApiManager apiManager;
@@ -37,7 +36,8 @@ class GetCategoryDataSourceImpl extends GetCategoryDataSource {
         return Left(
           ServerError(
             errorMessage:
-                CategoryOrBrandResponseDm.fromJson(response.data).message ?? " hii",
+                CategoryOrBrandResponseDm.fromJson(response.data).message ??
+                " hii",
           ),
         );
       }

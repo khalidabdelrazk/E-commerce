@@ -7,12 +7,13 @@ class CustomElevatedButton extends StatelessWidget {
   Color backgroundColor;
   TextStyle textStyle;
   void Function()? onPressed;
-  CustomElevatedButton(
-      {super.key,
-      required this.text,
-      required this.onPressed,
-      required this.backgroundColor,
-      required this.textStyle});
+  CustomElevatedButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.textStyle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +23,13 @@ class CustomElevatedButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 1.w),
         backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(15.r),
-          ),
+          borderRadius: BorderRadius.all(Radius.circular(15.r)),
         ),
       ),
       child: SizedBox(
         height: 64.h,
         width: 398.w,
-        child: Center(
-          child: AutoSizeText(text, style: textStyle),
-        ),
+        child: Center(child: AutoSizeText(text, style: textStyle)),
       ),
     );
   }

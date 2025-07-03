@@ -34,9 +34,7 @@ class _FavoriteItemState extends State<FavoriteItem> {
           height: 135.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(
-              color: AppColors.primaryColor.withOpacity(.3),
-            ),
+            border: Border.all(color: AppColors.primaryColor.withOpacity(.3)),
           ),
           child: Row(
             children: [
@@ -54,15 +52,17 @@ class _FavoriteItemState extends State<FavoriteItem> {
                     height: 135.h,
                     fit: BoxFit.cover,
                     imageUrl: widget.product["imageUrl"],
-                    placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                    errorWidget: (context, url, error) => const Icon(
-                      Icons.error,
-                      color: AppColors.primaryColor,
-                    ),
+                    placeholder:
+                        (context, url) => const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                    errorWidget:
+                        (context, url, error) => const Icon(
+                          Icons.error,
+                          color: AppColors.primaryColor,
+                        ),
                   ),
                 ),
               ),
@@ -88,9 +88,10 @@ class _FavoriteItemState extends State<FavoriteItem> {
                             onTap: () {
                               setState(() {
                                 widget.isClicked = !widget.isClicked;
-                                widget.heartIcon = !widget.isClicked
-                                    ? AppAssets.selectedFavouriteIcon
-                                    : AppAssets.selectedAddToFavouriteIcon;
+                                widget.heartIcon =
+                                    !widget.isClicked
+                                        ? AppAssets.selectedFavouriteIcon
+                                        : AppAssets.selectedAddToFavouriteIcon;
                               });
                             },
                             child: Material(
@@ -100,11 +101,12 @@ class _FavoriteItemState extends State<FavoriteItem> {
                               shape: const StadiumBorder(),
                               shadowColor: AppColors.blackColor,
                               child: Padding(
-                                  padding: const EdgeInsets.all(6),
-                                  child: ImageIcon(
-                                    AssetImage(widget.heartIcon),
-                                    color: AppColors.primaryColor,
-                                  )),
+                                padding: const EdgeInsets.all(6),
+                                child: ImageIcon(
+                                  AssetImage(widget.heartIcon),
+                                  color: AppColors.primaryColor,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -123,7 +125,7 @@ class _FavoriteItemState extends State<FavoriteItem> {
                           AutoSizeText(
                             (widget.product["color"] as Color).colorName,
                             style: AppStyles.regular14Text,
-                          )
+                          ),
                         ],
                       ),
                       Row(
@@ -132,25 +134,26 @@ class _FavoriteItemState extends State<FavoriteItem> {
                             "EGP ${widget.product["finalPrice"]}",
                             style: AppStyles.medium18Header,
                           ),
-                          SizedBox(
-                            width: 8.w,
-                          ),
+                          SizedBox(width: 8.w),
                           AutoSizeText(
                             "EGP${widget.product["salePrice"]}",
                             style: AppStyles.regular11SalePrice.copyWith(
-                                decoration: TextDecoration.lineThrough),
+                              decoration: TextDecoration.lineThrough,
+                            ),
                           ),
                           const Spacer(),
                           SizedBox(
                             width: 100.w,
                             height: 36.h,
                             child: CustomElevatedButton(
-                                text: "Add To Cart",
-                                onPressed: () {},
-                                backgroundColor: AppColors.primaryColor,
-                                textStyle: AppStyles.medium14Category
-                                    .copyWith(color: AppColors.whiteColor)),
-                          )
+                              text: "Add To Cart",
+                              onPressed: () {},
+                              backgroundColor: AppColors.primaryColor,
+                              textStyle: AppStyles.medium14Category.copyWith(
+                                color: AppColors.whiteColor,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ],

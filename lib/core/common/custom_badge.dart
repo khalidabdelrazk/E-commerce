@@ -14,11 +14,12 @@ class CustomAppBarBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentRoute = ModalRoute.of(context)?.settings.name;
     return InkWell(
-      onTap: currentRoute != AppRoutes.cartRoute
-          ? () {
-              Navigator.of(context).pushNamed(AppRoutes.cartRoute);
-            }
-          : null,
+      onTap:
+          currentRoute != AppRoutes.cartRoute
+              ? () {
+                Navigator.of(context).pushNamed(AppRoutes.cartRoute);
+              }
+              : null,
       child: Badge(
         alignment: AlignmentDirectional.topStart,
         backgroundColor: AppColors.greenColor,

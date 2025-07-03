@@ -12,9 +12,6 @@ class GetBrandsUseCase {
     num limit = 50,
     String keyword = '',
   }) {
-    return homeRepository.getBrands(
-      limit: limit,
-      keyword: keyword,
-    );
+    return homeRepository.getBrands(limit: limit, keyword: keyword);
   }
 }

@@ -13,6 +13,10 @@ class GetCategoryUseCase {
     num page = 1,
     String keyword = '',
   }) {
-    return homeRepository.getCategories(limit: limit, page: page, keyword: keyword);
+    return homeRepository.getCategories(
+      limit: limit,
+      page: page,
+      keyword: keyword,
+    );
   }
 }

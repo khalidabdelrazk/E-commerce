@@ -1,6 +1,7 @@
 import 'package:ecommerce/presentation/authentication/Domain/Repository/auth_repository.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../../../core/error/failures.dart';import 'package:either_dart/either.dart';
+import '../../../../../../core/error/failures.dart';
+import 'package:either_dart/either.dart';
 
 import '../Entity/login_response_entity.dart';
 
@@ -15,6 +16,12 @@ class RegisterUseCase {
     String? rePassword,
     String? phone,
   ) {
-    return registerRepository.register(name, email, password, rePassword, phone);
+    return registerRepository.register(
+      name,
+      email,
+      password,
+      rePassword,
+      phone,
+    );
   }
 }

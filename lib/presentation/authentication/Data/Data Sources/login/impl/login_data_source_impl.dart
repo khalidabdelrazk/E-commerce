@@ -17,24 +17,29 @@ class LoginDataSourceImpl extends LoginDataSource {
     String email,
     String password,
   ) async {
-    try{
+    try {
       final List<ConnectivityResult> connectivity =
-      await Connectivity().checkConnectivity();
+          await Connectivity().checkConnectivity();
       if (connectivity.contains(ConnectivityResult.wifi) ||
           connectivity.contains(ConnectivityResult.ethernet)) {
         final response = await apiManager.postData(
           path: ApiEndPoints.signIn,
           data: {"email": email, "password": password},
-          options: Options(validateStatus: (status) => true,),
+          options: Options(validateStatus: (status) => true),
         );
 
         if (response.statusCode! >= 200 && response.statusCode! < 300) {
           return Right(LoginResponseDm.fromJson(response.data));
         }
-        return Left(ServerError(errorMessage: LoginResponseDm.fromJson(response.data).message ?? " hii"));
+        return Left(
+          ServerError(
+            errorMessage:
+                LoginResponseDm.fromJson(response.data).message ?? " hii",
+          ),
+        );
       }
       return Left(NetworkError(errorMessage: "Network Error"));
-    }catch(e){
+    } catch (e) {
       return Left(ServerError(errorMessage: e.toString()));
     }
   }

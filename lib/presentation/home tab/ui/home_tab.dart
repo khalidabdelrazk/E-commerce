@@ -33,7 +33,6 @@ class _HomeTabState extends State<HomeTab> {
       homeViewModel.getCategories();
       homeViewModel.getBrands();
       bool initialized = true;
-
     }
   }
 
@@ -66,7 +65,9 @@ class _HomeTabState extends State<HomeTab> {
   _buildCategorySec() {
     return BlocBuilder<HomeViewModel, HomeStates>(
       bloc: homeViewModel,
-      buildWhen: (previous, current) => current is CategorySuccessState || current is ErrorState,
+      buildWhen:
+          (previous, current) =>
+              current is CategorySuccessState || current is ErrorState,
       builder: (context, state) {
         if (state is ErrorState) {
           return NetworkErrorWidget(errorMsg: state.errorMessage, large: false);
@@ -85,8 +86,12 @@ class _HomeTabState extends State<HomeTab> {
               physics: const ScrollPhysics(),
               itemBuilder: (context, index) {
                 return CategoryBrandItem(
-                  imgUrl: state.categoryOrBrandResponseEntity.data?[index].image ?? '',
-                  title: state.categoryOrBrandResponseEntity.data?[index].name ?? 'hi',
+                  imgUrl:
+                      state.categoryOrBrandResponseEntity.data?[index].image ??
+                      '',
+                  title:
+                      state.categoryOrBrandResponseEntity.data?[index].name ??
+                      'hi',
                 );
               },
             ),
@@ -98,11 +103,12 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 
-
   _buildBrandSec() {
     return BlocBuilder<HomeViewModel, HomeStates>(
       bloc: homeViewModel,
-      buildWhen: (previous, current) => current is BrandsSuccessState || current is ErrorState,
+      buildWhen:
+          (previous, current) =>
+              current is BrandsSuccessState || current is ErrorState,
       builder: (context, state) {
         if (state is ErrorState) {
           return NetworkErrorWidget(errorMsg: state.errorMessage, large: false);
@@ -121,8 +127,12 @@ class _HomeTabState extends State<HomeTab> {
               physics: const ScrollPhysics(),
               itemBuilder: (context, index) {
                 return CategoryBrandItem(
-                  imgUrl: state.categoryOrBrandResponseEntity.data?[index].image ?? '',
-                  title: state.categoryOrBrandResponseEntity.data?[index].name ?? 'hi',
+                  imgUrl:
+                      state.categoryOrBrandResponseEntity.data?[index].image ??
+                      '',
+                  title:
+                      state.categoryOrBrandResponseEntity.data?[index].name ??
+                      'hi',
                 );
               },
             ),

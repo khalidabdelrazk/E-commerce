@@ -34,7 +34,7 @@ class HomeRepositoryImpl extends HomeRepository {
   Future<Either<Failures, CategoryOrBrandResponseEntity>> getBrands({
     required num limit,
     required String keyword,
-  }) async{
+  }) async {
     var either = await getBrandsDataSource.getBrands(
       limit: limit,
       keyword: keyword,

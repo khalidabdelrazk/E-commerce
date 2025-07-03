@@ -18,7 +18,7 @@ class CustomTextFormField extends StatefulWidget {
   bool isObscureText;
   bool isPassword;
   TextStyle? textStyle;
-  bool  readonly;
+  bool readonly;
 
   CustomTextFormField({
     super.key,
@@ -63,16 +63,20 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           label: widget.label,
           labelStyle: widget.labelStyle,
           prefixIcon: widget.prefixIcon,
-          suffixIcon: widget.isPassword
-              ? IconButton(
-                  onPressed: () {
-                    widget.isObscureText = !widget.isObscureText;
-                    setState(() {});
-                  },
-                  icon: Icon(widget.isObscureText
-                      ? Icons.visibility_off
-                      : Icons.visibility))
-              : widget.suffixIcon,
+          suffixIcon:
+              widget.isPassword
+                  ? IconButton(
+                    onPressed: () {
+                      widget.isObscureText = !widget.isObscureText;
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      widget.isObscureText
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                  )
+                  : widget.suffixIcon,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(color: widget.borderColor, width: 1),
@@ -82,11 +86,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             borderSide: BorderSide(color: widget.borderColor, width: 1),
           ),
           errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: AppColors.redColor)),
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: AppColors.redColor),
+          ),
           focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(color: AppColors.redColor)),
+            borderRadius: BorderRadius.circular(16),
+            borderSide: const BorderSide(color: AppColors.redColor),
+          ),
         ),
       ),
     );

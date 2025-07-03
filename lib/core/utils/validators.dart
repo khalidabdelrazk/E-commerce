@@ -3,7 +3,8 @@ class AppValidators {
 
   static String? validateEmail(String? val) {
     RegExp emailRegex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
     if (val == null) {
       return 'this field is required';
     } else if (val.trim().isEmpty) {

@@ -15,7 +15,10 @@ class CategoryBrandItem extends StatelessWidget {
   bool _isValidImageUrl(String url) {
     return url.isNotEmpty &&
         (url.startsWith('http://') || url.startsWith('https://')) &&
-        (url.endsWith('.png') || url.endsWith('.jpg') || url.endsWith('.jpeg') || url.contains('image'));
+        (url.endsWith('.png') ||
+            url.endsWith('.jpg') ||
+            url.endsWith('.jpeg') ||
+            url.contains('image'));
   }
 
   @override
@@ -24,24 +27,32 @@ class CategoryBrandItem extends StatelessWidget {
       children: [
         Expanded(
           flex: 8,
-          child: _isValidImageUrl(imgUrl)
-              ? CachedNetworkImage(
-            width: double.infinity,
-            height: 10.h,
-            fit: BoxFit.cover,
-            imageUrl: imgUrl,
-            imageBuilder: (context, imageProvider) {
-              return CircleAvatar(
-                backgroundImage: imageProvider,
-                radius: 50.r,
-              );
-            },
-            placeholder: (context, url) => const Center(
-              child: CircularProgressIndicator(color: AppColors.primaryDark),
-            ),
-            errorWidget: (context, url, error) => const Icon(Icons.broken_image, color: AppColors.redColor),
-          )
-              : const Icon(Icons.broken_image, color: AppColors.redColor),
+          child:
+              _isValidImageUrl(imgUrl)
+                  ? CachedNetworkImage(
+                    width: double.infinity,
+                    height: 10.h,
+                    fit: BoxFit.cover,
+                    imageUrl: imgUrl,
+                    imageBuilder: (context, imageProvider) {
+                      return CircleAvatar(
+                        backgroundImage: imageProvider,
+                        radius: 50.r,
+                      );
+                    },
+                    placeholder:
+                        (context, url) => const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryDark,
+                          ),
+                        ),
+                    errorWidget:
+                        (context, url, error) => const Icon(
+                          Icons.broken_image,
+                          color: AppColors.redColor,
+                        ),
+                  )
+                  : const Icon(Icons.broken_image, color: AppColors.redColor),
         ),
         SizedBox(height: 8.h),
         Expanded(

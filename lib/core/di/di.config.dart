@@ -90,11 +90,11 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i355.RegisterUseCase(registerRepository: gh<_i471.AuthRepository>()),
     );
-    gh.factory<_i203.GetBrandsUseCase>(
-      () => _i203.GetBrandsUseCase(homeRepository: gh<_i20.HomeRepository>()),
-    );
     gh.factory<_i128.GetCategoryUseCase>(
       () => _i128.GetCategoryUseCase(homeRepository: gh<_i20.HomeRepository>()),
+    );
+    gh.factory<_i203.GetBrandsUseCase>(
+      () => _i203.GetBrandsUseCase(homeRepository: gh<_i20.HomeRepository>()),
     );
     gh.factory<_i625.AuthViewModel>(
       () => _i625.AuthViewModel(

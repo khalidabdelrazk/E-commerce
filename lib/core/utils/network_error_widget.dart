@@ -31,17 +31,19 @@ class _NetworkErrorWidgetState extends State<NetworkErrorWidget> {
           const SizedBox(height: 16),
           Text(
             "Network Error",
-            style: widget.large
-                ? Theme.of(context).textTheme.titleLarge
-                : Theme.of(context).textTheme.titleMedium,
+            style:
+                widget.large
+                    ? Theme.of(context).textTheme.titleLarge
+                    : Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 8),
           Text(
             widget.errorMsg,
             textAlign: TextAlign.center,
-            style: widget.large
-                ? Theme.of(context).textTheme.bodyMedium
-                : Theme.of(context).textTheme.bodySmall,
+            style:
+                widget.large
+                    ? Theme.of(context).textTheme.bodyMedium
+                    : Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(height: 24),
           ElevatedButton.icon(
@@ -53,9 +55,10 @@ class _NetworkErrorWidgetState extends State<NetworkErrorWidget> {
             icon: const Icon(Icons.refresh),
             label: Text(
               "Try Again",
-              style: widget.large
-                  ? Theme.of(context).textTheme.bodyMedium
-                  : Theme.of(context).textTheme.bodySmall,
+              style:
+                  widget.large
+                      ? Theme.of(context).textTheme.bodyMedium
+                      : Theme.of(context).textTheme.bodySmall,
             ),
           ),
         ],

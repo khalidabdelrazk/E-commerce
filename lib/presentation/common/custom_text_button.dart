@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +16,7 @@ class CustomTextButton extends StatelessWidget {
       style: TextButton.styleFrom(
         splashFactory: NoSplash.splashFactory,
         overlayColor: Colors.transparent,
-        textStyle:AppStyles.light16White
+        textStyle: AppStyles.light16White,
       ),
       child: Text(
         txt,

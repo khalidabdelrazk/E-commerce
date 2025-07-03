@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../core/utils/app_colors.dart';
 
-
 class CustomButton extends StatelessWidget {
   final String text;
   final IconData? prefixIcon;
@@ -34,10 +33,13 @@ class CustomButton extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
-            side: borderRadius?.toDouble()!=null ? BorderSide(
-              width: borderRadius?.toDouble() ?? 0,
-              color: AppColors.transparentColor,
-            ): BorderSide.none,
+            side:
+                borderRadius?.toDouble() != null
+                    ? BorderSide(
+                      width: borderRadius?.toDouble() ?? 0,
+                      color: AppColors.transparentColor,
+                    )
+                    : BorderSide.none,
           ),
         ),
         onPressed: onPressed,

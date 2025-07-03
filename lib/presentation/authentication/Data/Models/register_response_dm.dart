@@ -1,12 +1,7 @@
 import '../../Domain/Entity/login_response_entity.dart';
 
 class RegisterResponseDm extends AuthResponseEntity {
-  RegisterResponseDm({
-    super.message,
-    super.user,
-    super.token,
-    super.statusMsg,
-  });
+  RegisterResponseDm({super.message, super.user, super.token, super.statusMsg});
 
   RegisterResponseDm.fromJson(dynamic json) {
     message = json['message'];
@@ -24,7 +19,6 @@ class UserDm extends UserEntity {
     email = json['email'];
     role = json['role'];
   }
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
