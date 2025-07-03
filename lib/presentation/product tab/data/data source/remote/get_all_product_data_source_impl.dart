@@ -18,6 +18,10 @@ class GetAllProductDataSourceImpl extends GetALlProductDataSource {
       final List<ConnectivityResult> connectivity =
           await Connectivity().checkConnectivity();
       if (connectivity.contains(ConnectivityResult.wifi) ||
+          connectivity.contains(ConnectivityResult.other) ||
+          connectivity.contains(ConnectivityResult.vpn) ||
+          connectivity.contains(ConnectivityResult.bluetooth) ||
+          connectivity.contains(ConnectivityResult.none) ||
           connectivity.contains(ConnectivityResult.ethernet)) {
         final response = await apiManager.getData(
           path: ApiEndPoints.getAllProducts,

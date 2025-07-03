@@ -17,88 +17,50 @@ class ProductsTab extends StatefulWidget {
 }
 
 class _ProductsTabState extends State<ProductsTab> {
-  ProductTabViewModel productTabViewModel = getIt<ProductTabViewModel>();
+  final ProductTabViewModel productTabViewModel = getIt<ProductTabViewModel>();
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     productTabViewModel.getProducts();
   }
 
-  // @override
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<ProductTabViewModel, ProductStates>(
       bloc: productTabViewModel,
       builder: (context, state) {
         if (state is ProductLoadingState) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         if (state is ProductErrorState) {
           return NetworkErrorWidget(errorMsg: state.errorMessage, large: false);
-        } else if (state is ProductSuccessState) {
-          return SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 2 / 3.2.h,
-                      crossAxisSpacing: 16.w,
-                      mainAxisSpacing: 16.h,
-                    ),
-                    itemCount: state.productResponseEntity.data?.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          //todo: navigate to product details screen
-                          Navigator.pushNamed(context, AppRoutes.productRoute);
-                        },
-                        child: ProductTabItem(dataEntity: state.productResponseEntity.data?[index],),
-                      );
-                    },
-                  ),
-                ),
-              ],
+        }
+        if (state is ProductSuccessState) {
+          final items = state.productResponseEntity.data ?? [];
+
+          return Padding(
+            padding: EdgeInsets.all(8.w),
+            child: GridView.builder(
+              itemCount: items.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: MediaQuery.of(context).size.width > 500 ? 3 : 2,
+                crossAxisSpacing: 12.w,
+                mainAxisSpacing: 12.h,
+                childAspectRatio: 0.65, // Adjust to fit item height
+              ),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () => Navigator.pushNamed(context, AppRoutes.productRoute),
+                  child: ProductTabItem(dataEntity: items[index]),
+                );
+              },
             ),
           );
         }
-        return const Scaffold(backgroundColor: Colors.green);
+
+        return const SizedBox.shrink(); // fallback
       },
     );
   }
 }
-
-/*
-SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 3.2.h,
-                crossAxisSpacing: 16.w,
-                mainAxisSpacing: 16.h,
-              ),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    //todo: navigate to product details screen
-                    Navigator.pushNamed(context, AppRoutes.productRoute);
-                  },
-                  child: const ProductTabItem(),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    )
- */
