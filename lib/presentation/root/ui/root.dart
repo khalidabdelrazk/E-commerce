@@ -7,7 +7,7 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_styles.dart';
 import '../../favourite tab/ui/favorite_tab.dart';
 import '../../home tab/ui/home_tab.dart';
-import '../../product tab/ui/products_tab.dart';
+import '../../product tab/feature/products_tab.dart';
 import '../../user tab/ui/user_tab.dart';
 
 class Root extends StatefulWidget {
@@ -82,8 +82,9 @@ class _RootState extends State<Root> {
   }) {
     return BottomNavigationBarItem(
       icon: CircleAvatar(
-        foregroundColor:
-            isSelected ? AppColors.primaryColor : AppColors.whiteColor,
+        foregroundColor: isSelected
+            ? AppColors.primaryColor
+            : AppColors.whiteColor,
         backgroundColor: isSelected ? AppColors.whiteColor : Colors.transparent,
         radius: 25.r,
         child: Image.asset(isSelected ? selectedIcon : unselectedIcon),

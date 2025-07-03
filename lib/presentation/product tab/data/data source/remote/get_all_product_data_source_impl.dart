@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce/core/api%20manager/api_endpints.dart';
 import 'package:ecommerce/core/api%20manager/api_manager.dart';
 import 'package:ecommerce/core/error/failures.dart';
-import 'package:ecommerce/presentation/product%20tab/data/model/product_response_dm';
+import 'package:injectable/injectable.dart';
+import '../../model/product_response_dm.dart';
 import '../get_all_product_data_source.dart';
 
+@Injectable(as: GetALlProductDataSource)
 class GetAllProductDataSourceImpl extends GetALlProductDataSource {
   ApiManager apiManager;
   GetAllProductDataSourceImpl({required this.apiManager});

@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce/presentation/home%20tab/domain/entity/category_or_brand_response_entity.dart';
 import 'package:ecommerce/presentation/home%20tab/domain/usecase/get_brands_use_case.dart';
 import 'package:ecommerce/presentation/home%20tab/domain/usecase/get_category_use_case.dart';
 import 'package:ecommerce/presentation/home%20tab/ui/cubit/home_states.dart';

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce/presentation/product%20tab/domain/entity/product_response_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,7 +8,8 @@ import '../utils/app_colors.dart';
 import '../utils/app_styles.dart';
 
 class ProductTabItem extends StatelessWidget {
-  const ProductTabItem({super.key});
+  const ProductTabItem({super.key, required this.dataEntity});
+  final DataEntity? dataEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +28,14 @@ class ProductTabItem extends StatelessWidget {
                   width: 191.w,
                   height: 120.h,
                   fit: BoxFit.cover,
-                  imageUrl:
-                      "https://www.nike.sa/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw42ccc9ea/nk/a9b/7/6/4/b/1/a9b764b1_834c_413e_aec2_f460112b2de6.jpg?sw=2000&sh=2000&sm=fit",
-                  placeholder:
-                      (context, url) => const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.primaryDark,
-                        ),
-                      ),
-                  errorWidget:
-                      (context, url, error) =>
-                          const Icon(Icons.error, color: AppColors.redColor),
+                  imageUrl: dataEntity?.imageCover ?? " ",
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.primaryDark,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Icons.error, color: AppColors.redColor),
                 ),
               ),
               Positioned(
@@ -70,7 +69,7 @@ class ProductTabItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AutoSizeText(
-                  "Nike Air Jordan",
+                  dataEntity?.subcategory?[0].name ?? " ",
                   maxLines: 1,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.primaryColor,
@@ -80,7 +79,7 @@ class ProductTabItem extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 AutoSizeText(
-                  "NIKE SHOES FLEXIBLE FOR MEN",
+                  dataEntity?.description ?? " hi",
                   maxLines: 1,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.primaryColor,
@@ -92,7 +91,7 @@ class ProductTabItem extends StatelessWidget {
                 Row(
                   children: [
                     AutoSizeText(
-                      "EGP 1500",
+                      dataEntity!.price.toString(),
                       maxLines: 1,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.primaryColor,
@@ -102,7 +101,7 @@ class ProductTabItem extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     AutoSizeText(
-                      "EGP 2000",
+                      (dataEntity?.price ?? 0 * 1.1).toString(),
                       maxLines: 1,
                       style: AppStyles.regular11SalePrice.copyWith(
                         color: AppColors.discountTextColor,
@@ -115,7 +114,7 @@ class ProductTabItem extends StatelessWidget {
                 Row(
                   children: [
                     AutoSizeText(
-                      "Review (4.8)",
+                      dataEntity!.ratingsAverage.toString(),
                       maxLines: 1,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.primaryColor,

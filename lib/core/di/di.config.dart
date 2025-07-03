@@ -47,6 +47,18 @@ import '../../presentation/home%20tab/domain/usecase/get_brands_use_case.dart'
 import '../../presentation/home%20tab/domain/usecase/get_category_use_case.dart'
     as _i128;
 import '../../presentation/home%20tab/ui/cubit/home_view_model.dart' as _i193;
+import '../../presentation/product%20tab/data/data%20source/get_all_product_data_source.dart'
+    as _i936;
+import '../../presentation/product%20tab/data/data%20source/remote/get_all_product_data_source_impl.dart'
+    as _i557;
+import '../../presentation/product%20tab/data/repository/get_all_product_repository_impl.dart'
+    as _i583;
+import '../../presentation/product%20tab/domain/repository/get_all_product_repository.dart'
+    as _i655;
+import '../../presentation/product%20tab/domain/use%20cases/get_all_product_use_case.dart'
+    as _i876;
+import '../../presentation/product%20tab/feature/cubit/product_tab_view_model.dart'
+    as _i214;
 import '../api%20manager/api_manager.dart' as _i949;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -60,6 +72,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i579.GetCategoryDataSource>(
       () => _i564.GetCategoryDataSourceImpl(apiManager: gh<_i949.ApiManager>()),
     );
+    gh.factory<_i936.GetALlProductDataSource>(
+      () =>
+          _i557.GetAllProductDataSourceImpl(apiManager: gh<_i949.ApiManager>()),
+    );
     gh.factory<_i1004.RegisterRemoteDataSource>(
       () => _i766.RegisterRemoteDataSourceImpl(
         apiManager: gh<_i949.ApiManager>(),
@@ -71,6 +87,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i271.LoginDataSource>(
       () => _i247.LoginDataSourceImpl(apiManager: gh<_i949.ApiManager>()),
     );
+    gh.factory<_i655.GetAllProductRepository>(
+      () => _i583.GetALlProductRepositoryImpl(
+        getALlProductDataSource: gh<_i936.GetALlProductDataSource>(),
+      ),
+    );
     gh.factory<_i20.HomeRepository>(
       () => _i1030.HomeRepositoryImpl(
         getCategoryDataSource: gh<_i579.GetCategoryDataSource>(),
@@ -81,6 +102,16 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i659.AuthRepositoryImpl(
         gh<_i271.LoginDataSource>(),
         registerRemoteDataSource: gh<_i1004.RegisterRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i876.GetAllProductUseCase>(
+      () => _i876.GetAllProductUseCase(
+        getAllProductRepository: gh<_i655.GetAllProductRepository>(),
+      ),
+    );
+    gh.factory<_i214.ProductTabViewModel>(
+      () => _i214.ProductTabViewModel(
+        getAllProductUseCase: gh<_i876.GetAllProductUseCase>(),
       ),
     );
     gh.factory<_i540.LoginUseCase>(

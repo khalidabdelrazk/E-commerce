@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ecommerce/core/error/failures.dart';
-import 'package:ecommerce/presentation/product%20tab/data/model/product_response_dm';
+import '../model/product_response_dm.dart';
 
 abstract class GetALlProductDataSource {
   Future<Either<Failures, ProductResponseDm>> getProducts();
