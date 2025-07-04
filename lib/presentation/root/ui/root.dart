@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/common/bottom_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,11 +20,11 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   int selectedIndex = 0;
-  List<Widget> bodyList = [HomeTab(), ProductsTab(), FavoriteTab(), UserTab()];
 
   void bottomNavOnTap(int index) {
-    selectedIndex = index;
-    setState(() {});
+    setState(() {
+      selectedIndex = index;
+    });
   }
 
   @override
@@ -32,64 +33,38 @@ class _RootState extends State<Root> {
       appBar: _buildAppBar(selectedIndex),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: bodyList[selectedIndex],
+        child: barItems[selectedIndex]["page"],
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16.r),
-          topRight: Radius.circular(16.r),
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(canvasColor: AppColors.primaryColor),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            elevation: 0,
-            currentIndex: selectedIndex,
-            onTap: bottomNavOnTap,
-            iconSize: 24.sp, // Adjust the icon size
-            items: [
-              _bottomNavBarItemBuilder(
-                isSelected: selectedIndex == 0,
-                selectedIcon: AppAssets.selectedHomeIcon,
-                unselectedIcon: AppAssets.unSelectedHomeIcon,
-              ),
-              _bottomNavBarItemBuilder(
-                isSelected: selectedIndex == 1,
-                selectedIcon: AppAssets.selectedCategoryIcon,
-                unselectedIcon: AppAssets.unSelectedCategoryIcon,
-              ),
-              _bottomNavBarItemBuilder(
-                isSelected: selectedIndex == 2,
-                selectedIcon: AppAssets.selectedFavouriteIcon,
-                unselectedIcon: AppAssets.unSelectedFavouriteIcon,
-              ),
-              _bottomNavBarItemBuilder(
-                isSelected: selectedIndex == 3,
-                selectedIcon: AppAssets.selectedAccountIcon,
-                unselectedIcon: AppAssets.unSelectedAccountIcon,
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: getBottomBar(), // ✅ Use this instead of floatingActionButton
     );
   }
 
-  BottomNavigationBarItem _bottomNavBarItemBuilder({
-    required bool isSelected,
-    required String selectedIcon,
-    required String unselectedIcon,
-  }) {
-    return BottomNavigationBarItem(
-      icon: CircleAvatar(
-        foregroundColor: isSelected
-            ? AppColors.primaryColor
-            : AppColors.whiteColor,
-        backgroundColor: isSelected ? AppColors.whiteColor : Colors.transparent,
-        radius: 25.r,
-        child: Image.asset(isSelected ? selectedIcon : unselectedIcon),
+  Widget getBottomBar() {
+    return Container(
+      height: 90.h,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: AppColors.blueColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
+        ),
       ),
-      label: "",
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: List.generate(
+          barItems.length,
+              (index) => BottomBarItem(
+            selectedIndex == index
+                ? barItems[index]["active_icon"]
+                : barItems[index]["icon"],
+            "",
+            isActive: selectedIndex == index,
+            activeColor: Theme.of(context).primaryColor,
+            onTap: () => bottomNavOnTap(index),
+          ),
+        ),
+      ),
     );
   }
 
@@ -119,9 +94,8 @@ class _RootState extends State<Root> {
                 height: 22.h,
               ),
             ),
-            Visibility(
-              visible: index != 3,
-              child: Expanded(
+            if (index != 3)
+              Expanded(
                 child: Row(
                   children: [
                     Expanded(
@@ -129,7 +103,7 @@ class _RootState extends State<Root> {
                         style: AppStyles.regular14Text,
                         cursorColor: AppColors.primaryColor,
                         onTap: () {
-                          //todo: implement search logic
+                          // TODO: implement search logic
                         },
                         decoration: InputDecoration(
                           border: _buildCustomBorder(),
@@ -150,10 +124,32 @@ class _RootState extends State<Root> {
                   ],
                 ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
+
+  List<Map<String, dynamic>> get barItems => [
+    {
+      "icon": AppAssets.unSelectedHomeIcon,
+      "active_icon": AppAssets.selectedHomeIcon,
+      "page": HomeTab(),
+    },
+    {
+      "icon": AppAssets.unSelectedCategoryIcon,
+      "active_icon": AppAssets.selectedCategoryIcon,
+      "page": const ProductsTab(),
+    },
+    {
+      "icon": AppAssets.unSelectedFavouriteIcon,
+      "active_icon": AppAssets.selectedFavouriteIcon,
+      "page": FavoriteTab(),
+    },
+    {
+      "icon": AppAssets.unSelectedAccountIcon,
+      "active_icon": AppAssets.selectedAccountIcon,
+      "page": const UserTab(),
+    },
+  ];
 }
